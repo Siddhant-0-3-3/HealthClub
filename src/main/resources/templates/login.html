@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="https://www.rudebox.org.ua/favicon.ico"/>
+    <link rel='stylesheet prefetch' href='https://www.rudebox.org.ua/demo/lessons/styles/style.css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stylelogin.css">
+</head>
+
+<body class="login-page">
+
+<main>
+
+    <nav class="colorlib-nav" role="navigation">
+        <div class="top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div id="colorlib-logo"><a href="/index">FitnessCamp</a></div>
+                    </div>
+                    <div class="col-md-10 text-right menu-1">
+                        <ul>
+                            <li class="active"><a href="index">Home</a></li>
+                            <li class="has-dropdown">
+                                <a href="/classes">Classes</a>
+                                <ul class="dropdown">
+                                    <li><a href="/classes-single">Individual Sessions</a></li>
+                                    <li><a href="#">Crossfit Group</a></li>
+                                    <li><a href="#">Boxing Group</a></li>
+                                    <li><a href="#">Fitness Group</a></li>
+                                    <li><a href="#">Bodybuilding</a></li>
+                                    <li><a href="#">Strength Training</a></li>
+                                    <li><a href="#">Yoga</a></li>
+                                    <li><a href="#">Step Aerobics</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/schedule">Schedule</a></li>
+                            <li><a href="/about">Trainers</a></li>
+                            <li><a href="/event">Events</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/contact">Contact</a></li>
+
+                            <li sec:authorize="hasAuthority('ROLE_TRAINER')"><a href="/trainerPage">Trainer Page</a></li>
+
+                            <li sec:authorize="hasAuthority('ROLE_ADMIN')"><a href="/administration">Administration</a></li>
+
+                            <li sec:authorize="isAnonymous()"><a href="/registration">Register</a></li>
+                            <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+                            <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="login-block">
+
+        <img src="images/1.png" alt="your photo"><br>
+
+        <div th:if="${param.error}">
+            <font color="red">Invalid username or password.</font>
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                    <input name="username" type="text" class="form-control" placeholder="Your username">
+                </div>
+            </div>
+
+            <hr class="hr-xs">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
+                    <input name="password" type="password" class="form-control" placeholder="Your password">
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit">LOGIN</button>
+            <div class="login-footer">
+                <h6>or login with</h6>
+                <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="login-links">
+        <p class="text-center">Don't have an account yet? <a class="txt-brand" href="/registration"><font color=#29aafe>Register</font></a></p>
+    </div>
+
+</main>
+
+</body>
+</html>
