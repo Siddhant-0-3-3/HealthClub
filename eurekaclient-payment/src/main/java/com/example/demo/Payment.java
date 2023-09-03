@@ -8,15 +8,15 @@ import javax.persistence.Id;
 public class Payment 
 {
 @Id
-@GeneratedValue
+//@GeneratedValue
 private Integer userId;
-private Integer trainerId;
+private String trainerName;
 private Integer days;
 private Double amount;
 
 @Override
 public String toString() {
-	return "Payment [userId=" + userId + ", trainerId=" + trainerId + ", days=" + days + ", amount=" + amount + "]";
+	return "Payment [userId=" + userId + ", trainerId=" + trainerName + ", days=" + days + ", amount=" + amount + "]";
 }
 
 public Integer getUserId() {
@@ -27,12 +27,12 @@ public void setUserId(Integer userId) {
 	this.userId = userId;
 }
 
-public Integer getTrainerId() {
-	return trainerId;
+public String getTrainerName() {
+	return trainerName;
 }
 
-public void setTrainerId(Integer trainerId) {
-	this.trainerId = trainerId;
+public void setTrainerName(String trainerId) {
+	this.trainerName = trainerName;
 }
 
 public Integer getDays() {
@@ -54,7 +54,7 @@ public void setAmount(Double amount) {
 public Payment(Integer userId, Integer trainerId, Integer days, Double amount) {
 	super();
 	this.userId = userId;
-	this.trainerId = trainerId;
+	this.trainerName = trainerName;
 	this.days = days;
 	this.amount = amount;
 }

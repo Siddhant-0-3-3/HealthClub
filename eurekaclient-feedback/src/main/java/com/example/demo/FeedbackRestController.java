@@ -16,6 +16,7 @@ public class FeedbackRestController
 {
 	@Autowired
 	private IntFeedbackService service;
+
 	
 	//1. to save the data
 	@PostMapping
@@ -33,6 +34,8 @@ public List<Feedback> getAllFeedback()
 	return allStudent;
 	}
 
-	
-
+@PostMapping("/email")
+public void sendMail(@RequestBody EmailRequest emailRequest) {
+service.sendEmail(emailRequest);
+}
 }

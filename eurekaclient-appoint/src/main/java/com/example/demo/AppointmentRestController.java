@@ -1,5 +1,8 @@
 package com.example.demo;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +15,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.*;
 
 @RestController
 @RequestMapping("/appointment")
 public class AppointmentRestController 
+
 {
+	List<String> trainers=new ArrayList<String>(Arrays.asList("akshay","sidhanth","harsh"));
 	@Autowired
 	private IntAppointmenttService service;
 	
@@ -28,6 +34,11 @@ public class AppointmentRestController
 		ResponseEntity<String> resp=new ResponseEntity("Employee"+id+" Created",HttpStatus.CREATED);
 		return resp;
 	}
+	@GetMapping("/trainers")
+	public List<String> displayTrainers(){
+		return trainers;
+	}
+	
 //2. to view the data	
 @GetMapping("/all")
 public List<Appointment> getAllEmployee()

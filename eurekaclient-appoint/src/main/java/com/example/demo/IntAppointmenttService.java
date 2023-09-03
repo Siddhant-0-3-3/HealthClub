@@ -8,4 +8,5 @@ public Integer saveAppointment(Appointment c);
 public List<Appointment> getAllAppointments();
 public Appointment getOneAppointment(Integer id);
 public void deleteAppointment(Integer id);
+public List<String> displayTrainers();
 }
